@@ -12,3 +12,6 @@
  github, gitee 身份
 - git config --global user.name "BakaCommitDa"
 - git config --global user.email "3076323533@qq.com"
+
+
+- new.txt
