@@ -151,3 +151,11 @@ vercel 是一个快速部署前端应用的平台，支持自动 CI/CD 和全球
 - 为我写一个终端命令来初始化一个新的vercel应用。
 - npx create-next-app@latest . 创建一个网站模板
 - npm run dev 启动本地服务
+
+
+
+
+
+
+
+- git 版本控制 
