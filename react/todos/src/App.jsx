@@ -51,7 +51,6 @@ function App(){
   return(
     <div>
       <h1 className='title'>{title}</h1>
-    
     <table>
       <thead>
         <tr>
