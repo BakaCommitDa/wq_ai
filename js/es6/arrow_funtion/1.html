@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+<script>
+    // 'use strict'
+    var name = '小卢';
+    function fn(){
+        var name = '小李'
+        console.log(this.name);
+            }
+    // fn();//普通函数
+    // window.fn();//不好，会污染window
+    let obj = {
+        name:'小王',
+        fn:function(){
+            console.log(this.name);
+            
+        }
+    }
+
+    //作为方法调用
+    obj.fn();
+    // 最后指向
+    const fn2 = obj.fn;
+    fn2();//
+
+
+    
+</script>
+</body>
+</html>
