@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型</title>
+  <style>
+  /* css 样式重置 */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .box {
+        /* 像display一样   可以去切换盒子的能力 */
+        /* box-sizing 可以设定盒子的计算方案
+        默认值是 content-box   width hight  指定的是内容的大小
+        border-box  width height 包含了boder 以内的大小  叫怪异盒(IE)模型
+        */ 
+    box-sizing: content-box;
+    width: 200px;
+    height: 200px;
+    background-color: greenyellow;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid purple;
+  }
+  .flex {
+    display: flex;
+  }
+  main {
+    flex: 1;
+    position: relative;
+  }
+  .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    border-radius: 50%; /*脱离了文档流*/
+  }
+  .container {
+    flex: 1;
+    overflow: scroll;
+  }
+  header, footer {
+    height: 44px;
+    background-color: gray;
+    text-align: center;
+  }
+  footer{
+    display: flex;/* 开启了新的格式化上下文 */
+    justify-content: center;
+    align-items: center;
+  }
+  .more{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%,-50%); */
+    background-color: palegreen;
+    margin-left: -25px;
+    margin-top: -25px;
+
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>盒模型</h1>
+  </header>
+  <div class="container">
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner" style="z-index: 999;"></div>        <!-- 调节层次 -->
+        <div style="position: absolute; width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+    <div class="row flex">
+      <aside class="box"></aside>
+      <main class="box">
+        <div class="inner"></div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+        <div style="width:100px;height:100px;background:black;">1+2+3</div>
+      </main>
+      <aside class="box"></aside>
+    </div>
+  </div>
+  <footer>
+    <p>盒模型</p>
+  </footer>
+  <div class="more">1111</div>
+</body>
+</html>
