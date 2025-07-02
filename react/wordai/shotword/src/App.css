@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    /* linear-gradient(...)
+    这是 CSS 的一个函数，用于创建线性渐变（Linear Gradient）背景。
+    它会从一个颜色平滑过渡到另一个或多个颜色。
+    用渐变色来代替jpg,png 背景图片来做背景，比单一色更艺术 */
+    /* http 请求，浏览器的下载线程 */
+    /* color stop color + 百分比 
+    deg 顺时针*/
+    background: linear-gradient(45deg,rgb(229, 235, 161) 0%,rgb(17, 230, 226)60%,rgb(112, 81, 237)100%);
+
+}
