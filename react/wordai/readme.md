@@ -25,6 +25,18 @@
   pnpm --version  版本号
 
 
+## react 语法
+- 单向数据流
+  数据状态流动
+  - 父组件负责提供数据，和api 接口请求
+  - 拆成多个子组件 
+  - 数据会从父组件流向子组件
+  - 子组件负责消费数据   专注于显示
+  - props
+    <PictureCard 
+    uploadImage={uploadImage}
+    />
+    像函数参数一样 可以解构 
 ## 项目中一定要安排的技能点
 - pnpm
 - react  思想
@@ -35,8 +47,15 @@
 - 业务
   - 图片上传
     - 图片预览
-- 组件化设计 
+- 组件化设计
+  - APP
+    - 提供数据
+    - 图片的上传大模型 
   - PictureCard
+    单向数据流
+    - 子组件 只负责消费数据
+    - 父组件负责提供数据，数据的请求
+    - 先要给父组件 
 - 性能优化
   - linear-gradient 代替图片做背景
 - 用户体验
@@ -47,3 +66,27 @@
   - 可选链运算符
 - html5 功能
   - file  文件对象
+  
+- 智能
+  - 多模态模型 
+    向 月之暗面， base64 
+    怎么设计 prompt?
+   - prompt 涉及原则
+     - 给它一个明确的身份 LLM交流  当人
+     - 清晰且具体的任务
+     - 限制，指定结果 
+       返回的结构 JSON
+       有利于接下来的业务执行
+       拿着大模型的回答，接着干活
+       JSON是最后的接口格式
+     - 分步做 
+
+
+"{
+  "image_discription": "A pink-haired anime character is drinking from a glass.",
+  "representative_word": "drink",
+  "example_sentence": "She is enjoying her drink.",
+  "explaination": "Look at the image. The character is holding a glass.\nShe is sipping from the glass.\nThis action is called drinking.\nDrinking is when you take in a liquid.\nDo you drink water every day?",
+  "explaination_replys": ["Yes, I drink water every day to stay hydrated.", "I try to drink at least eight glasses of water daily."]
+}
+"
