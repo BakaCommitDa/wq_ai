@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #menu{
+            display: none;
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            padding: 20px;
+            background: #f2f2f2;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="togglebtn">Toggle Menu</div>
+    <div id="menu">
+        <p>Menu Context</p>
+        <a href="http://www.daidu.com" id="closeInside">Don't  closed</a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('togglebtn')
+        const menu = document.getElementById('menu')
+        const closeInside = document.getElementById('closeInside')
+
+        toggleBtn.addEventListener('click',function(e){
+            e.stopPropagation();
+            menu.style.display = menu.style.display === 'block'?'none':'block';
+        })
+
+        document.addEventListener('click',function(){
+            menu.style.display = 'none'
+        })
+        closeInside.addEventListener('click',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            alert('Menu button click');
+        })
+    </script>
+</body>
+</html>
