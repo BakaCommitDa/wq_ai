@@ -1,20 +1,37 @@
 *
-  padding 0
-  margin 0
+    margin 0
+    padding 0
 
-
-body 
-  font-family -apple-system, Arial, sans-serif
-  background #f4f4f4
-  padding 2rem
+body
+    font-family -apple-system,Arial,snas-serif
+    background #f4f4f4
+    padding 2rem
 
 .app
     max-width 600px
-    margin 0 auto
+    margin 0 auto 
     background white
     padding 2rem
     border-radius 0.5rem
-    box-shadow 0 2px 6px rgba(0, 0, 0, 0.1)
+    box-shadow 0 2px 6px rgba(0, 0, 0, 0.1 )
 
 .header
     text-align center
+
+.todo-input
+    display flex
+    gap 1rem
+    margin-bottom 1rem
+
+.todo-list
+    list-style none
+    padding 0
+    .todo-item
+        display flex
+        justify-content space-between
+        align-items center
+        padding 0.5rem
+        border-bottom 1px solid #ccc
+        .completed
+            text-decoration line-through
+            color #aaa
