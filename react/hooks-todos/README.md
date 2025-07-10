@@ -58,3 +58,70 @@
     -vue 中 <input v-model="text">  双向绑定
     - react 中 <input value={text} onChange={e=>{setText(e.target.value)} /> 
     react   坚持 单向绑定
+
+- 本地存储
+    - localStorage    html5
+       key:value  存储
+
+       localStorage.setItem('title','本地存储')
+       localStorage.getItem('title')
+       localStorage.removeItem('title')
+       window.location.href='http://www.baidu.com'
+       window.history.go(-1)
+
+
+    - BOM   Brower  Object Model 
+    - DOM  Document Object Model
+- 本地存储
+    - localStorage 和 cookie 有什么异同
+    假如你在面试字节，请问如何介绍locaStorage 和cookie 相同点，区别， 用table 列出来
+     - http 无状态，head cookie 带上
+     - cookie 太大, 影响http 性能  4kB
+     - cookie 前端 ，后端都可以设置
+       过期时间
+       domain  隔离
+     - localStorage 只在浏览器
+        domain
+        todos
+        5MB
+     - IdexDB  数据库  GB
+
+
+## 自定义hooks
+    - 自己定义的
+    - use
+    - 某一项功能
+       不是简单函数的封装
+       响应式的状态
+       effect 
+       todos 
+
+- 自定义hooks
+     - 现代react app 的架构一部分
+     - hook目录
+         自定义hooks
+         框架common部分
+         业务定制 ahooks
+
+    - use开头
+       把state,effect,逻辑封装复用
+    - return 
+        todos,
+        setTodos,
+        addTodo,
+        onToggle,
+        onDelete
+        函数式编程思想的体现
+    - 组件更加干净 更加聚焦于模板渲染
+    - 全面hooks函数式3编程
+
+- 两个遗憾
+   - ../../ 路径山路18弯
+            resolve: {
+            // 别名
+            alias: {
+            '@': path.resolve(__dirname, './src'),
+            },
+        },
+
+    - toggle,delete  跨域组件层级有点多，  useContext
