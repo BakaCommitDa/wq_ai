@@ -55,3 +55,30 @@ hash
         #/about
 - 事件
      hsahChange
+
+## 基于SPA
+- url可以改变，但不会向后端发送请求 前端路由
+    - hash + hasnChange事件 + DOM
+    - history + pushState/popState
+- 前端路由由react-router-dom配置  页面级别路由
+  热更新 Route
+  Outlet
+- 单页应用
+   只有一个页面 但可以有多个url路由状态
+   页面级别组件
+   window.location  window.history
+   栈
+   State
+
+- history
+   很早就有， 在浏览器历史记录里游走
+   - html5 赋予history新的功能
+   - hash + hashChange 有优点，但是有很大的缺点
+       兼容性好
+       缺点http://127.0.0.1:5500/html5/router/3.html#home
+       hash 不好理解
+       不这样，传统后端路由一样
+       http://127.0.0.1:5500/首页
+       http://127.0.0.1:5500/about 关于
+    - 怎么样像后端路由，不刷新页面
+    html 升级了history api 来实现之
