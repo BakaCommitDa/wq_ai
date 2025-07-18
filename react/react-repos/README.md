@@ -36,3 +36,34 @@
        人口文件
        添加路由， SPA
        添加全局应用状态管理
+
+- RwpoList 功能模块
+   - params 解析
+       - useParams 动态参数对象
+       - 不要放到useEffect 里面
+       - 校验id
+           不要相信用户的任何提交
+       - navigate('/') -> useEffect中去
+
+
+- 路径处理
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})
+
+- 组件的开发模式
+     - UI组件(JSX)
+     - 自定义hooks useRepos 方便
+     - 状态管理  应用全局  contecxt 来管
+         - reposloading error => context value
+         - useReducer reducer 函数
