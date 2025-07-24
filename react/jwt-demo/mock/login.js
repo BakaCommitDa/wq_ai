@@ -1,5 +1,6 @@
 
 import jwt from 'jsonwebtoken';
+import { data } from 'react-router-dom';
 
 // 安全性  编码的时候加密
 // 解码的时候用于解密
@@ -40,8 +41,10 @@ export default [
             
             return{
                 token,
-                username,
-                password,
+                data:{
+                    id:"001",
+                    username:"admin",
+                }
             }
         }
     },
