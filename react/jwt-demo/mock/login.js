@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 // 安全性  编码的时候加密
 // 解码的时候用于解密
+// 加盐
 const secret = '!O:I@& !:@ *YQ: @* Y&T^ L';
 
 
@@ -41,6 +42,35 @@ export default [
                 token,
                 username,
                 password,
+            }
+        }
+    },
+    {
+        url:'/api/user',
+        method:'get',
+        response:(req,res) => {
+            // 用户端 token headers 
+
+            const token = req.headers['authorization'].split(' ')[1];
+            console.log(token);
+            
+            try{
+                const decode = jwt.decode(token,secret);
+                console.log(decode);
+                
+                return {
+                    code:0,
+                    date:decode.user
+                }
+            }catch(err){
+                return{
+                    code:1,
+                    message:'Invalid token'
+                }
+                
+            }
+            return {
+                token
             }
         }
     }
