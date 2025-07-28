@@ -6,10 +6,11 @@ import {
 import {
   Route,
   Routes,
-  Navigate
+  Navigate,
 }from 'react-router-dom'
 import MainLayout from '@/components/MainLayout'
 import Blankyout from '@/components/Blankyout'
+import Loading from '@/components/Loading'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Search = lazy(() => import('@/pages/Search'))
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <>
-    <Suspense fallback={<div>loading</div>}>
+    <Suspense fallback={<Loading/>}>
       <Routes>
         {/* 带有tabber的layout */}
         <Route element={<MainLayout/>}>
