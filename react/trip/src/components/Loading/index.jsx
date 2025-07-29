@@ -1,15 +1,13 @@
 import styles from './loading.module.css'
-import { memo } from 'react'
+import { memo } from 'react';
 
 const Loading = () => {
-  return (
-    <div>
-      <div className={styles.wrapper}>
-          <div></div>
-          <div></div>
-      </div>
-    </div>
-  )
+    return (
+        <div className={styles.wrapper}>
+            <div></div>
+            <div></div>
+        </div>
+    )
 }
 
 export default memo(Loading)

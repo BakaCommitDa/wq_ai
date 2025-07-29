@@ -1,13 +1,11 @@
-import{
+import {
     useEffect
-}from 'react'
+} from 'react'
 
-
-function useTitle(title){
-    useEffect(()=>{
+function useTitle(title) {
+    // useEffect(() => {
         document.title = title
-    },[])    
+    // }, [])
 }
-
 
 export default useTitle
