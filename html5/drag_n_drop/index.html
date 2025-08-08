@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag N Drop</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color: skyblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+
+        }
+        .empty{
+            height: 150px;
+            width: 150px;
+            margin: 10px;
+            border: 3px solid #000;
+            background: white;
+        }
+        .fill{
+            background-image: url(https://ts1.tc.mm.bing.net/th/id/R-C.5b0c2acbde53c2acc15f35a48f3a7dbb?rik=MWZzrXzcVFiMqw&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd20111%2f0%2fw400h400%2f20250318%2f973a-gif3d73d99979247888379618a4cbd4b584.gif&ehk=Oa5p8LK3R8z6%2bq4bHXEiMNKhf%2fUzINM5j8jsA1Sq5yQ%3d&risl=&pid=ImgRaw&r=0);
+            background-size: cover;
+            width: 145px;
+            height: 145px;
+            cursor: pointer;
+        }
+        .hold{
+            border: 5px solid #ccc;
+        }
+
+        .hovered{
+            background-color: #333;
+            border-color: white;
+        }
+
+
+        /* 自适应
+        媒体·查询
+            媒体（媒介）选择 超大环绕屏 PC 电脑 ， ipad,  手机
+        */
+        @media (max-width: 800px) {
+            /* 什么媒体上生效  小尺寸 移动端   */
+            body{
+                flex-direction: column;
+
+            }
+
+
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.Yav3sYlW8KFriZoBCtqoZQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt=""> -->
+    <div class="empty ">
+        <!-- 可以拖拽 -->
+        <div class="fill" draggable="true"></div>
+    </div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+
+    <script>
+        const fill = document.querySelector('.fill');
+        const empties = document.querySelectorAll('.empty');
+        const body = document.body;
+        /// 冒泡机制  事件委托
+        body.addEventListener('dragstart',dragStart);
+        body.addEventListener('dragend',dragEnd);
+        
+        for(const empty of empties){
+            empty.addEventListener('dragover',dragOver);
+            empty.addEventListener('dragenter',dragEnter);
+            empty.addEventListener('dragleave',dragLeave);
+            empty.addEventListener('drop',dropDrop);
+        }
+
+        function dragStart(event){
+            if(!event.target.classList.contains('fill')){
+                event.preventDefault();// 阻止默认行为
+
+                return ;
+            }
+            fill.className += ' hold';
+            setTimeout(()=>{
+                fill.className='invisible'
+            },0)
+
+        }
+        function dragEnd(event){
+            fill.className = 'fill';
+
+        }
+        function dragOver(event){
+            event.preventDefault();
+        }
+        function dragEnter(event){
+            event.preventDefault();
+            this.className += ' hovered'
+        }
+        function dragLeave(){
+            this.className = 'empty'
+
+        }
+        function dropDrop(event){
+            this.className = 'empty'
+            this.append(fill)
+
+        }
+    </script>
+</body>
+</html>
