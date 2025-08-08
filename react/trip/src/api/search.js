@@ -8,3 +8,4 @@ export const getSuggestList = async (keyword) => {
 export const getHotList = async () => {
     return axios.get('/hotList');
 }
+

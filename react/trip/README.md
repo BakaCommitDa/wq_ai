@@ -215,6 +215,14 @@ ReadMe.md  很重要  方便面试官
     - 骨架屏 不用让用户等待了 
     - 文件上传 preview
     
+- 语言输入发表文章
+    - 字节的 tts
+    - onMouseDown
+    - DOM html
+    navigator.mediaDevices.getUserMedia({
+        audio:true
+    })
+    用户隐私，要授权  getlocation获取位置
 
 
 
@@ -254,3 +262,7 @@ ReadMe.md  很重要  方便面试官
         position:fixed + tlrb0 + margin:auto
    - React.memo  无状态的组件，不重新渲染
    - animation
+   
+
+- AI功能
+    智能前端(http 请求) + 工作流+coze api + ai 全新工作链 + 自动化Agent

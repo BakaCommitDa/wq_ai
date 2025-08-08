@@ -20,6 +20,8 @@ const Trip = lazy(() => import('@/pages/Trip'));
 const Account = lazy(() => import('@/pages/Account'));
 const Search = lazy(() => import('@/pages/Search'));
 const Detail = lazy(() => import('@/pages/Detail'));
+const Article = lazy(() => import('@/pages/Article'));
+const ArticleNew = lazy(() => import('@/pages/Article/ArticleNew'));
 
 const Coze = lazy(() => import('./pages/Coze/index.jsx'));
 
@@ -41,6 +43,10 @@ function App() {
           {/* 空的Layout */}
           <Route element={<BlankLayout />}>
             <Route path="/search" element={<Search />}/>
+            <Route path="/article" element={<Article />} >
+                <Route path='/article/new' element={<ArticleNew />} />
+            </ Route>
+
             <Route path="/detail/:id" element={<Detail />} />
             
             <Route path="/coze" element={<Coze />}/>
