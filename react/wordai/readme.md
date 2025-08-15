@@ -10,7 +10,7 @@
 - 解决一些特定的效率性、创新型APP
 
 
-- npm init vite
+<!-- - npm init vite
   vite 是工程化脚手架，构建工具
 - npm i 慢了点
   react... 项目依赖
@@ -22,7 +22,7 @@
   不同的项目中 重复去安装了react
   react 等包放到一个地方，如果之前安装过，链接，只需要安装一次
   npm install -g pnpm   全局安装pnpm
-  pnpm --version  版本号
+  pnpm --version  版本号 -->
 
 
 ## react 语法

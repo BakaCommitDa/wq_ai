@@ -3,13 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>私有属性和方法的封装</title>
 </head>
 <body>
     <script>
         function Book(title,author,year){
-            this.title = 
+        // 对内 私有
+        // 向外
+        let _title = title  // 以下划线开始的变量 私有变量  内部 有利于可读性的编程风格
+        let _author = author
+        let _year = year
+        this.getTitle = function(){
+            return _title
         }
+
+        // 私有
+        function getFullTitle(){
+            return `${_title} by ${_author}`
+        }
+        this.getFullTitle = function(){
+            return `${getFullTitle()},publish in ${year}`
+        }
+        this.getAuthor = function(){
+            return _author;
+        }
+        this.getYear = function(){
+            return _year;
+        }
+        // 类的开发者，和类的使用者，可能是两拨人
+        this.updataYear = function(newYear){
+            if(typeof newYear === 'number' && newYear > 0){
+                _year = newYear;
+            }else{
+                console.error('Invaid year'); 
+            }
+        }
+
+        }
+        let book = new Book('JavaScript高级程序设计','Nicholas C.Zakas',2011);
+        console.log(book._title);
+        console.log(book.getTitle());
+        console.log(book.getFullTitle());
+        // book._year = '2025'
+        // console.log(book.updataYear('2025'));
+        book.updataYear(2015)
+        console.log(book.getYear());
+        
+        
     </script>
 </body>
 </html>

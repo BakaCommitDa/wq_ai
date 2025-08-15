@@ -1,12 +1,5 @@
 // 多个直接输出
-export const generateAudio = ()=>{
-
-}
-
-
-
-
-export const generateAudioWithYm = async(text)=>{
+export const generateAudio = async()=>{
     const token = import.meta.env.VITE_AUDIO_ACCESS_TOKEN;
     const appId = import.meta.env.VITE_AUDIO_APP_ID;
     const clusterId = import.meta.env.VITE_AUDIO_CLUSTERID;
@@ -56,6 +49,13 @@ export const generateAudioWithYm = async(text)=>{
 }
 
 
-import { use } from 'react';
-import {generateAudio} from './lib./audio.js';
+
+
+// export const generateAudioWithYm = async(text)=>{
+
+// }
+
+
+// import { use } from 'react';
+// import {generateAudio} from './lib./audio.js';
 

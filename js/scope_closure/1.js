@@ -1,4 +1,4 @@
-function bar(){6
+function bar(){
     console.log(myName);
 }
 function foo(){

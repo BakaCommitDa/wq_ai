@@ -1,4 +1,4 @@
-<!-- # react 业务
+# react 业务
 friends 数据
 App
 挂载点
@@ -28,33 +28,41 @@ App
   - npm i  安装依赖
     node_modules  包所在
   - npm run dev 启动项目
-    3000 端口启动应用 -->
+    3000 端口启动应用
 
     
 
-<!-- # 5 w
+# 5 w
 - what Web App
 - how npm init vite 初始化并vite的项目模板
 - 安装依赖
 - 启动应用 http 5173    react 技术栈 Web App   
-远离JS API 编程， 面向于业务  -->
+远离JS API 编程， 面向于业务 
 
 ## 响应式业务 
 ## TODOS 任务列表
    - 数据 ['脱单'，'学习'，'健身']
    数据在页面上渲染  react 提供点啥 支持这个业务 
 
-<!-- ## react 初体验
+## react 初体验
 - react 组件是完成开发任务的最小单元
 - 组件是一个函数
 - 返回一个html
 - 函数体里面 return 之前可以声明数据和业务逻辑
-- {}  js  表达式   不需要DOM  API 编程 -->
+- {}  js  表达式   不需要DOM  API 编程
 
 
-<!-- ## 响应式数据
+## 响应式数据
 - 数据会发生改变的，数据状态 state
 - [todos,setTodos] = useState(初始值) 使用一个数据状态
    数组第一项 数据项
-   数据第二项目 修改数据项的方法 -->
+   数据第二项目 修改数据项的方法
+
+## 前端为什么要搞AI?
+- 时代的需求和趋势
+- vibe coding   提升了开发效率 trae cursor
+- LLM的发展，产品需要更多更好的智能体验
+  用户的体验是前端的职责，智能前端工程师的新角色中
+
+
 

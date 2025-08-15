@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能猜词大师 - 掘金编程比赛2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="AI智能猜词大师 - 体验AI驱动的智能猜词游戏">
+    <meta name="keywords" content="AI游戏,猜词游戏,智能游戏,掘金比赛">
+</head>
+<body>
+    <!-- 性能监控 -->
+    <div id="performance-monitor" class="performance-monitor hidden">
+        <div class="perf-item">FPS: <span id="fps">60</span></div>
+        <div class="perf-item">内存: <span id="memory">0MB</span></div>
+    </div>
+
+    <!-- 游戏容器 -->
+    <div id="gameContainer" class="game-container">
+        <!-- 简化的头部 -->
+        <header class="game-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain" aria-hidden="true"></i>
+                    <span>AI猜词大师</span>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <i class="fas fa-trophy" aria-hidden="true"></i>
+                        <span id="totalScore">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-fire" aria-hidden="true"></i>
+                        <span id="streak">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主游戏区域 -->
+        <main class="game-main" role="main">
+            <!-- 欢迎界面 -->
+            <section id="welcomeScreen" class="screen welcome-screen">
+                <div class="welcome-content">
+                    <div class="welcome-header">
+                        <i class="fas fa-robot welcome-icon" aria-hidden="true"></i>
+                        <h1>AI智能猜词大师</h1>
+                        <p>挑战你的词汇量和联想能力</p>
+                    </div>
+                    
+                    <div class="game-setup">
+                        <div class="setup-section">
+                            <h2>游戏模式</h2>
+                            <div class="mode-selector">
+                                <button class="mode-btn active" data-mode="classic" aria-label="经典模式">
+                                    <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                    <span>经典模式</span>
+                                </button>
+                                <button class="mode-btn" data-mode="challenge" aria-label="挑战模式">
+                                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                                    <span>挑战模式</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setup-section">
+                            <h2>难度选择</h2>
+                            <div class="difficulty-selector">
+                                <button class="difficulty-btn" data-difficulty="easy">简单</button>
+                                <button class="difficulty-btn active" data-difficulty="medium">中等</button>
+                                <button class="difficulty-btn" data-difficulty="hard">困难</button>
+                                <button class="difficulty-btn" data-difficulty="expert">专家</button>
+                            </div>
+                        </div>
+
+                        <button id="startGameBtn" class="start-btn">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            开始游戏
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 游戏界面 -->
+            <section id="gameScreen" class="screen game-screen hidden">
+                <div class="game-content">
+                    <!-- 游戏状态栏 -->
+                    <div class="game-status">
+                        <div class="status-item">
+                            <span class="label">模式</span>
+                            <span id="currentMode" class="value">经典</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">难度</span>
+                            <span id="currentDifficulty" class="value">中等</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">得分</span>
+                            <span id="currentScore" class="value">0</span>
+                        </div>
+                        <div class="status-item timer-status">
+                            <span class="label">时间</span>
+                            <span id="timer" class="value timer">60</span>
+                        </div>
+                    </div>
+
+                    <!-- AI提示区域 -->
+                    <div class="hint-section">
+                        <div class="hint-header">
+                            <div class="ai-indicator">
+                                <i class="fas fa-robot" aria-hidden="true"></i>
+                                <span>AI提示</span>
+                            </div>
+                            <div class="hint-progress">
+                                <span id="hintLevel">1/5</span>
+                                <div class="progress-bar">
+                                    <div id="hintProgressBar" class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="aiHint" class="hint-text" role="region" aria-live="polite">
+                            点击开始游戏，AI将为您生成第一个词汇提示...
+                        </div>
+                    </div>
+
+                    <!-- 输入区域 -->
+                    <div class="input-section">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="userInput" 
+                                placeholder="输入您的答案..." 
+                                maxlength="20"
+                                autocomplete="off"
+                                spellcheck="false"
+                                aria-label="答案输入框"
+                            >
+                            <button id="submitBtn" class="submit-btn" aria-label="提交答案">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="hintBtn" class="action-btn" aria-label="获取更多提示">
+                                <i class="fas fa-question-circle" aria-hidden="true"></i>
+                                提示
+                            </button>
+                            <button id="skipBtn" class="action-btn" aria-label="跳过当前词汇">
+                                <i class="fas fa-forward" aria-hidden="true"></i>
+                                跳过
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 游戏历史 -->
+                    <div class="history-section">
+                        <div class="history-header">
+                            <h3>答题记录</h3>
+                            <button id="clearHistoryBtn" class="clear-btn" aria-label="清空记录">
+                                <i class="fas fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div id="guessHistory" class="guess-history" role="log" aria-live="polite"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结算界面 -->
+            <section id="settlementScreen" class="screen settlement-screen hidden">
+                <div class="settlement-content">
+                    <div class="settlement-header">
+                        <button id="closeSettlementBtn" class="close-btn" aria-label="关闭结算页面">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                        <i class="fas fa-trophy settlement-icon" aria-hidden="true"></i>
+                        <h2>游戏结束</h2>
+                        <p id="settlementSubtitle">恭喜完成本局游戏！</p>
+                    </div>
+                    
+                    <div class="settlement-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="settlementScore">0</div>
+                            <div class="stat-label">总得分</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="settlementCorrect">0</div>
+                            <div class="stat-label">正确答案</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="settlementAccuracy">0%</div>
+                            <div class="stat-label">准确率</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="settlementStreak">0</div>
+                            <div class="stat-label">最高连击</div>
+                        </div>
+                    </div>
+
+                    <!-- 本局答题记录 -->
+                    <div class="settlement-history">
+                        <div class="settlement-history-header">
+                            <h3>📝 本局答题记录</h3>
+                            <span id="historyCount" class="history-count">共0题</span>
+                        </div>
+                        <div id="settlementHistoryList" class="settlement-history-list">
+                            <!-- 历史记录将在这里动态生成 -->
+                        </div>
+                    </div>
+
+                    <!-- 倒计时区域 -->
+                    <div class="countdown-section">
+                        <div class="countdown-circle">
+                            <svg class="countdown-svg" viewBox="0 0 100 100">
+                                <circle class="countdown-bg" cx="50" cy="50" r="45"></circle>
+                                <circle id="countdownProgress" class="countdown-progress" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                            <div class="countdown-text">
+                                <span id="countdownNumber">5</span>
+                                <small>秒后返回</small>
+                            </div>
+                        </div>
+                        <p class="countdown-tip">⏰ 倒计时结束后自动返回主界面</p>
+                    </div>
+                    
+                    <div class="settlement-actions">
+                        <button id="playAgainFromSettlement" class="primary-btn">
+                            <i class="fas fa-redo" aria-hidden="true"></i>
+                            再来一局
+                        </button>
+                        <button id="backToMenuFromSettlement" class="secondary-btn">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            返回主界面
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果界面 -->
+            <section id="resultScreen" class="screen result-screen hidden">
+                <div class="result-content">
+                    <div class="result-header">
+                        <i id="resultIcon" class="fas fa-trophy result-icon" aria-hidden="true"></i>
+                        <h2 id="resultTitle">游戏结束</h2>
+                    </div>
+                    
+                    <div class="result-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="finalScore">0</div>
+                            <div class="stat-label">总得分</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="correctAnswers">0</div>
+                            <div class="stat-label">正确答案</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="accuracy">0%</div>
+                            <div class="stat-label">准确率</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="maxStreak">0</div>
+                            <div class="stat-label">最高连击</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button id="playAgainBtn" class="primary-btn">
+                            <i class="fas fa-redo" aria-hidden="true"></i>
+                            再玩一次
+                        </button>
+                        <button id="backToMenuBtn" class="secondary-btn">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            返回主菜单
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 简化的底部 -->
+        <footer class="game-footer">
+            <div class="footer-content">
+                <span>© 2025 AI智能猜词大师 | 掘金编程比赛作品</span>
+                <button id="perfToggleBtn" class="perf-toggle" aria-label="性能监控">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notificationContainer" class="notification-container" aria-live="assertive"></div>
+
+    <!-- AI状态指示器 -->
+    <div id="aiStatus" class="ai-status disabled">
+        <div class="ai-status-dot"></div>
+        <span id="aiStatusText">AI离线</span>
+    </div>
+
+    <!-- 加载覆盖层 -->
+    <div id="loadingOverlay" class="loading-overlay hidden" role="status" aria-label="加载中">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p id="loadingText">AI正在思考中...</p>
+        </div>
+    </div>
+
+    <script src="performance.js"></script>
+    <script src="ai-generator.js"></script>
+    <script src="loading-manager.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
+
