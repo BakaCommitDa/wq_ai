@@ -2,6 +2,9 @@ import {
     NextRequest,
     NextResponse
 } from "next/server";
+import {
+    verifyToken
+} from './lib/jwt';
 
 const protectedPath = ['/dashboard', '/profile']
 
@@ -17,6 +20,42 @@ export async function middleware(request:NextRequest) {
         return NextResponse.next();
     }
     
+    // login?
+    const accessToken = request.cookies.get('access_token')?.value;
+    const refreshToken = request.cookies.get('refresh_token')?.value;
+    // console.log(accessToken,refreshToken);
+    if(!accessToken && !refreshToken) {
+        return NextResponse.redirect(new URL('/login',request.url));
+    }
+
+    if(accessToken ) {
+        const accessPayload = await verifyToken(accessToken);
+        // console.log(accessPayload,'///');
+        if(accessPayload) {
+            const requestHeaders = new Headers(request.headers);
+            requestHeaders.set('x-user-id',accessPayload.userId as string);
+
+        return NextResponse.next({
+            request: {
+                headers: requestHeaders
+            }
+        })
+        }
+
+        
+    }
     
+    // accessToken过期了 无感刷新
+    if(refreshToken) {
+        const refreshPayload = await verifyToken(refreshToken);
+        if(refreshPayload) {
+            // 断言
+            // const userId = refreshPayload.userId as string;
+            const refreshUrl = new URL('/api/auth/refresh',request.url);
+            refreshUrl.searchParams.set('redirect',request.url);
+            return NextResponse.redirect(refreshUrl);
+        }
+    }
+
     return  NextResponse.redirect(new URL('/login',request.url));
 }

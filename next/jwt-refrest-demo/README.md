@@ -99,6 +99,10 @@
     - response.next() 放行
     - response.redirect() 重定向 跳转
 
+    - 通过jwt verify方法拿到payload后， 添加了自定义的请求头
+        x-user-id 
+        后续页面可以拿到这个值
+
 - JWT 的构成
     - 头部
         签名算法 HS256

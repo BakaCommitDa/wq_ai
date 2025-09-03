@@ -57,3 +57,14 @@ export const setAuthCookies = async (accessToken:string,
         })
 
     }
+
+export const verifyToken = async (token:string) => {
+    try {
+        const { payload } = await jwtVerify(token, 
+            getJwtSecretKey()
+        )
+        return payload;
+    }catch(err) {
+
+    }
+}
