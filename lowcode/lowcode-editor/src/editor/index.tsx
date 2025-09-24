@@ -3,34 +3,31 @@ import {
 } from "allotment";
 import 'allotment/dist/style.css';
 import {
-    Header
+  Header
 } from './components/Header';
 import {
-    Material
+  Material
 } from './components/Material';
 import {
-    EditArea
+  EditArea
 } from './components/EditArea';
 import {
-    Setting
+  Setting
 } from './components/Setting';
-
 
 export default function LowcodeEditor() {
   return (
     <div className="h-[100vh] flex flex-col">
-        <Header />
+      <Header/>
       <Allotment>
         <Allotment.Pane preferredSize={240} maxSize={300} minSize={200}>
-          <Material />
+          <Material/>
         </Allotment.Pane>
-
         <Allotment.Pane>
-          <EditArea />
+          <EditArea/>
         </Allotment.Pane>
-        
         <Allotment.Pane preferredSize={300} maxSize={500} minSize={300}>
-          <Setting />
+          <Setting/>
         </Allotment.Pane>
       </Allotment>
     </div>

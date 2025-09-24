@@ -1,7 +1,13 @@
-export function Setting() {
+import {
+  useComponentsStore
+} from '../../stores/components'
+export  function Setting() {
+  const { components } = useComponentsStore();
   return (
     <div>
-      Setting
+      <pre>      
+      { JSON.stringify(components, null, 2) }
+      </pre>
     </div>
   )
 }

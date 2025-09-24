@@ -1,25 +1,22 @@
 import {
   useMemo
 } from 'react';
+import { useComponentConfigStore } from '../../stores/component-config';
 import {
-  useComponentConfigStore
-} from '../../stores/components-config';
-import {
-  MaterialItem
-}from '../MaterialItem'
+  MaterialItem 
+} from '../MaterialItem'
 
-
-export function Material() {
+export  function Material() {
   const { componentConfig } = useComponentConfigStore();
   const components = useMemo(() => {
     return Object.values(componentConfig);
-  },[componentConfig])
+  }, [componentConfig])
   return (
     <div>
     {
-    components.map(item => {
-       return <MaterialItem name={item.name} key={item.name}  />
-    })
+      components.map(item => {
+        return <MaterialItem name={item.name} key={item.name}/>
+      })
     }
     </div>
   )

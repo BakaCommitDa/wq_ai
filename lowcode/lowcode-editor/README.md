@@ -47,3 +47,9 @@ Record<string, any> 是 TypeScript 中的一个工具类型，它表示一个对
 - react-dnd 是一个用于在 React 应用中实现拖放（Drag and Drop）功能的流行库，
 通过提供可组合的 API 和后端抽象（如 HTML5 或触摸）来简化复杂拖拽交互的开发。
 - 根上包着
+
+## 遇到的问题
+- useDrop 时候会插入多次 
+- useDrop 多次重复
+  违反了dry原则
+  封装一下

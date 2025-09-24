@@ -2,7 +2,7 @@ import React, {
   useEffect
 } from 'react';
 import { type Component, useComponentsStore } from '../../stores/components';
-import { useComponentConfigStore } from '../../stores/components-config';
+import { useComponentConfigStore } from '../../stores/component-config';
 
 export  function EditArea() {
   const { components, addComponent, deleteComponent } = useComponentsStore();
@@ -35,6 +35,7 @@ export  function EditArea() {
         config.component,
         {
           key: component.id,
+          id: component.id,
           ...config.defaultProps,
           ...component.props
         },
@@ -44,11 +45,11 @@ export  function EditArea() {
   }
 
   return (
-    <div>
-      <pre>
+    <>
+      {/* <pre>
         {JSON.stringify(components, null, 2)}
-      </pre>
+      </pre> */}
       {renderComponents(components)}
-    </div>
+    </>
   )
 }
