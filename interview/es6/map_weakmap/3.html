@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        const box = document.getElementById('box');
+        const map = new Map([
+            {'name':'张三'},
+            {'name':'李四'},
+            {'name':'王五'},
+        ]);
+        map.set(box,box);
+
+        console.log(map.keys());
+        console.log(map.values());
+        console.log(map.entries());
+        for(let [k,v] of map.entries()) {
+            console.log(k,'=>',v);
+        }
+    </script>
+</body>
+</html>
